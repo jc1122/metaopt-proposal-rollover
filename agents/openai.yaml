@@ -1,0 +1,10 @@
+interface:
+  display_name: "Metaopt Proposal Rollover"
+  short_description: "Filter and curate the proposal pool during iteration transitions"
+  categories:
+    - ml
+    - research
+  default_prompt: >
+    Filter the next_proposals pool for the new iteration. Carry over,
+    discard, or merge proposals based on the latest experiment results,
+    key learnings, and proposal invalidations.
