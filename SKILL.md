@@ -2,7 +2,7 @@
 name: metaopt-proposal-rollover
 description: "Use when the ml-metaoptimization orchestrator rolls to the next iteration. Filters the proposal pool by carrying over, discarding, or merging proposals based on latest results and learnings. Keywords: proposal rollover, iteration transition, proposal filtering, carry-over, metaoptimization worker."
 model_class: strong_reasoner
-lane: ROLL_ITERATION
+lane: rollover
 ---
 
 # metaopt-proposal-rollover
@@ -164,4 +164,5 @@ Count the final carry-over + merged proposals. If below `current_floor`, set `ne
 
 - `ml-metaoptimization/references/worker-lanes.md` — authoritative lane contract for `ROLL_ITERATION`
 - `ml-metaoptimization/references/contracts.md` — proposal pool fields, state schema, and iteration report contract
+- `ml-metaoptimization/references/dispatch-guide.md` — defines `ROLL_ITERATION` inputs/outputs and dispatch conventions
 - `ml-metaoptimization/references/state-machine.md` — `ROLL_ITERATION` transition semantics and guards
