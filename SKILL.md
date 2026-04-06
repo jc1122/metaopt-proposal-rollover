@@ -71,7 +71,7 @@ A list where each entry from `next_proposals` is annotated with a disposition:
 |-------------|--------|
 | `carry_over` | Original proposal unchanged, retaining all metadata |
 | `discard` | Proposal identifier + `reason` (e.g. "invalidated by results analysis", "superseded by learning: <X>", "duplicate of carry-over proposal <Y>") |
-| `merge` | List of source proposal identifiers + merged result as a new proposal object + `merge_rationale` |
+| `merge` | List of source `proposal_id` values + merged candidate (same shape as an ideation candidate: `title`, `rationale`, `expected_impact`, `target_area`) + `merge_rationale`. The orchestrator enriches the merged candidate with `proposal_id`, `source_slot_id` (set to `"rollover"`), `creation_iteration`, and `created_at` before persisting. |
 
 ### 2. Summary statistics
 
@@ -122,6 +122,7 @@ Discard superseded proposals with a reason referencing the specific learning.
 Identify proposals that are complementary — they address different aspects of the same improvement area and would be stronger combined. Merge them into a single proposal that:
 - Combines the rationales
 - Preserves all source identifiers for traceability
+- Returns the merged result as a candidate (worker-provided fields only: `title`, `rationale`, `expected_impact`, `target_area`); the orchestrator assigns a new `proposal_id` and sets `source_slot_id = "rollover"`
 - Remains distinct from other carry-over proposals (re-check `distinctness_rule`)
 
 ### Step 5 — Pool size check
